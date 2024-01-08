@@ -11,7 +11,7 @@ public class Product {
 	private Category category;
 
 	public Product() {
-		
+
 	}
 
 	public Product(int id, String name, int quantity, Double price, String description, String image, int status,
@@ -88,5 +88,11 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", description="
+				+ description + ", image=" + image + ", status=" + status + ", category=" + category + "]";
 	}
 }
