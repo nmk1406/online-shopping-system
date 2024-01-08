@@ -10,14 +10,15 @@ public class Order {
 	private String address;
 	private String email;
 	private String phone;
+	private int status;
 	private int userId;
 
 	public Order() {
-		
+
 	}
 
 	public Order(int id, Date orderDate, double totalMoney, String fullname, String address, String email, String phone,
-			int userId) {
+			int status, int userId) {
 		this.id = id;
 		this.orderDate = orderDate;
 		this.totalMoney = totalMoney;
@@ -25,6 +26,7 @@ public class Order {
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
+		this.status = status;
 		this.userId = userId;
 	}
 
@@ -82,6 +84,14 @@ public class Order {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public int getUserId() {
