@@ -11,7 +11,7 @@ import dto.Category;
 public class CategoryDao extends DBContext{
 	
 	// ham nay de lay tat ca category
-	public List<Category> getAllCategory() {
+	public List<Category> getAllCategories() {
 		List<Category> categories = new ArrayList<>();
 		String sql = "select * from categories";
 		
@@ -34,7 +34,7 @@ public class CategoryDao extends DBContext{
 	// test chuc nang cho ham lay tat ca category
 //	public static void main(String[] args) {
 //		CategoryDao categoryDao = new CategoryDao();
-//		List<Category> categories = categoryDao.getAllCategory();
+//		List<Category> categories = categoryDao.getAllCategories();
 //		System.out.println(categories);
 //	}
 	
