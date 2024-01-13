@@ -27,22 +27,36 @@ public class ShopControl extends HttpServlet {
 		CategoryDao categoryDao = new CategoryDao();
 		List<Category> categories = categoryDao.getAllCategories();
 		
-		int page, numerpage = 6;
-		int num = (list.size() == 0 ? (list.size()/numerpage) : ((list.size()/numerpage) + 1));
-		String xpage = request.getParameter("page");
-		if (xpage == null) {
+		// phan trang
+		int page;
+		String pageRaw = request.getParameter("page");
+		if (pageRaw == null) {
 			page = 1;
 		} else {
-			page = Integer.parseInt(xpage);
+			page = Integer.parseInt(pageRaw);
 		}
-		int start = (page - 1) * numerpage;
-		int end = Math.min(page * numerpage, list.size());
+		
+		int num;
+		int numPerPage = 6;
+		int size = list.size();
+		
+		if (size % numPerPage == 0) {
+			num = size / numPerPage;
+		} else {
+			num = (size / numPerPage) + 1;
+		}
+		
+		int start = (page - 1) * numPerPage;
+		int end = Math.min(page * numPerPage, size);
 		List<Product> products = productDao.getProductsByPage(list, start, end);
 		
 		request.setAttribute("products", products);
 		request.setAttribute("categories", categories);
 		request.setAttribute("num", num);
 		request.setAttribute("page", page);
+
+		String url = request.getServletPath();
+		request.setAttribute("url", url);
 		
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("shop.jsp");

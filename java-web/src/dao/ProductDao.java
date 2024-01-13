@@ -81,8 +81,8 @@ public class ProductDao extends DBContext {
 	// test chuc nang cho ham lay product theo id
 //	public static void main(String[] args) {
 //		ProductDao productDao = new ProductDao();
-//		Product products = productDao.getProductById(13);
-//		System.out.println(products);
+//		Product product = productDao.getProductById(13);
+//		System.out.println(product);
 //	}
 
 	public List<Product> getProductsByPage(List<Product> products, int start, int end) {

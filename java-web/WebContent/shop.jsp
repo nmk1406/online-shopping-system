@@ -27,11 +27,11 @@
 					<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 						<div class="block-4 text-center border" style="height: 100%">
 							<figure class="block-4-image">
-								<a href="#"></a>
+								<a href="product-detail?id=${product.id}"></a>
 									<img src="${product.image}" alt="Image placeholder" class="img-fluid">
 							</figure>
 							<div class="block-4-text p-4">
-								<h3><a href="#">${product.name}</a></h3>
+								<h3><a href="product-detail?id=${product.id}">${product.name} ${action}</a></h3>
 								<p class="mb-0">$${product.price}</p>
 							</div>
 						</div>
@@ -43,7 +43,16 @@
                 <div class="site-block-27">
                   <ul>
                     <c:forEach begin="${1}" end="${num}" var="i">
-                    	<li><a href="shop?page=${i}">${i}</a></li>
+                    	<c:set var="url" value="${url}"/>
+                    	<c:if test="${url == '/shop'}">
+                    		<li><a href="shop?page=${i}">${i}</a></li>
+                    	</c:if>
+                    	<c:if test="${url == '/search'}">
+                    		<li><a href="search?txt=${txt}&page=${i}">${i}</a></li>
+                    	</c:if>
+                    	<c:if test="${url == '/category'}">
+                    		<li><a href="category?id=${categoryId}&page=${i}">${i}</a></li>
+                    	</c:if>
                     </c:forEach>
                   </ul>
                 </div>

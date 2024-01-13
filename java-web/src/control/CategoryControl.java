@@ -21,22 +21,45 @@ public class CategoryControl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idRaw = request.getParameter("id");
-		int id = 0;
-		try {
-			id = Integer.parseInt(idRaw);
-		} catch (NumberFormatException e) {
-			System.out.println(e);
-		}
+		int categoryId = Integer.parseInt(request.getParameter("id"));
 		
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getProductByCategoryId(id);
+		List<Product> list = productDao.getProductByCategoryId(categoryId);
 		
 		CategoryDao categoryDao = new CategoryDao();
 		List<Category> categories = categoryDao.getAllCategories();
-
-        request.setAttribute("products", products);
-        request.setAttribute("categories", categories);
+		
+		// phan trang
+		int page;
+		String pageRaw = request.getParameter("page");
+		if (pageRaw == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(pageRaw);
+		}
+		
+		int num;
+		int numPerPage = 6;
+		int size = list.size();
+		
+		if (size % numPerPage == 0) {
+			num = size / numPerPage;
+		} else {
+			num = (size / numPerPage) + 1;
+		}
+		
+		int start = (page - 1) * numPerPage;
+		int end = Math.min(page * numPerPage, size);
+		List<Product> products = productDao.getProductsByPage(list, start, end);
+		
+		request.setAttribute("products", products);
+		request.setAttribute("categories", categories);
+		request.setAttribute("num", num);
+		request.setAttribute("page", page);
+		
+		String url = request.getServletPath();
+		request.setAttribute("url", url);
+		request.setAttribute("categoryId", categoryId);
         
         RequestDispatcher rd;
 		rd = request.getRequestDispatcher("shop.jsp");
