@@ -28,8 +28,8 @@ public class ShopControl extends HttpServlet {
 		List<Category> categories = categoryDao.getAllCategories();
 		
 		// phan trang
-		int page;
 		String pageRaw = request.getParameter("page");
+		int page;
 		if (pageRaw == null) {
 			page = 1;
 		} else {

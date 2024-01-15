@@ -40,5 +40,4 @@ public class ProductDetailControl extends HttpServlet {
 			throws ServletException, IOException {
 		
 	}
-
 }
