@@ -8,7 +8,6 @@
 <body>
 	<div class="site-wrap">
 		<jsp:include page="template/header.jsp"/>
-		
 		<div class="bg-light py-3">
 			<div class="container">
 				<div class="row">
@@ -20,28 +19,24 @@
 				</div>
 			</div>
 		</div>
-
 	    <div class="site-section">
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-md-6">
 	                    <img src="${product.image}" alt="Image" class="img-fluid">
 	                </div>
-	
 	                <div class="col-md-6">
 	                    <h2 class="text-black">${product.name}</h2>
 						<h6 class="text-black">${product.category.name}</h6>
 	                    <p>${product.description}</p>
-	
 	                    <p><strong class="text-primary h4">$${product.price}</strong></p>
-	
 	                    <form action="buy" method="post">
-	                        <div class="mb-3">
-	                        	<input name="id" value="${product.id}" type="hidden">
+	                    	<div class="mb-3">
+	                    		<input name="id" value="${product.id}" type="hidden">
 	                        	<input name="quantity" value="1" type="hidden">
 	                        	<label for="quantity" class="form-label text-black">
 	                        		Products available: ${product.quantity}
-	                            </label>
+	                        	</label>
 	                        </div>
 	                        <p><input type="submit" class="buy-now btn btn-sm btn-primary" value="Add To Cart"></p>
 	                    </form>

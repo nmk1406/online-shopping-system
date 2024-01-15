@@ -32,7 +32,7 @@
                                 <th class="product-price">Price</th>
                                 <th class="product-quantity">Quantity</th>
                                 <th class="product-total">Total</th>
-                                <th class="product-remove">Remove</th>
+                                <th class="product-remove">Action</th>
                             </tr>
                             </thead>
 
@@ -74,7 +74,7 @@
                                                value="${item.price * item.quantity}" style="text-align: center" disabled="disabled">
                                     </td>
 
-                                    <td><a href="cart?remove-product-id=${o.product.id}" class="btn btn-primary btn-sm">X</a></td>
+                                    <td><a href="cart?remove-product-id=${o.product.id}" class="btn btn-primary btn-sm">Remove</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

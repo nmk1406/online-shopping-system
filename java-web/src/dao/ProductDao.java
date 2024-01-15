@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,15 +9,17 @@ import java.util.List;
 
 import dto.Category;
 import dto.Product;
+import utils.DBUtils;
 
-public class ProductDao extends DBContext {
+public class ProductDao {
 
 	// ham nay de lay tat ca product
 	public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<>();
 		String sql = "select * from products";
 
-		try (PreparedStatement ps = connection.prepareStatement(sql);) {
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -41,18 +44,12 @@ public class ProductDao extends DBContext {
 		return products;
 	}
 
-	// test chuc nang cho ham lay tat ca product
-//	public static void main(String[] args) {
-//		ProductDao productDao = new ProductDao();
-//		List<Product> products = productDao.getAllProducts();
-//		System.out.println(products);
-//	}
-
 	// ham nay de lay product theo id
 	public Product getProductById(int id) {
 		String sql = "select * from products where id = ?";
 
-		try (PreparedStatement ps = connection.prepareStatement(sql);) {
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
@@ -78,13 +75,7 @@ public class ProductDao extends DBContext {
 		return null;
 	}
 
-	// test chuc nang cho ham lay product theo id
-//	public static void main(String[] args) {
-//		ProductDao productDao = new ProductDao();
-//		Product product = productDao.getProductById(13);
-//		System.out.println(product);
-//	}
-
+	// ham nay de phan trang
 	public List<Product> getProductsByPage(List<Product> products, int start, int end) {
 		ArrayList<Product> arr = new ArrayList<>();
 		for (int i = start; i < end; i++) {
@@ -93,6 +84,7 @@ public class ProductDao extends DBContext {
 		return arr;
 	}
 	
+	// ham nay search theo name
 	public List<Product> search(String txt) {
 		List<Product> products = new ArrayList<>();
 		String sql = "select * from products where status = 1 ";
@@ -101,7 +93,8 @@ public class ProductDao extends DBContext {
 			sql += "and name like '%" + txt + "%'"; 
 		}
 		
-		try (PreparedStatement ps = connection.prepareStatement(sql);) {
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -125,13 +118,8 @@ public class ProductDao extends DBContext {
 		}
 		return products;
 	}
-
-//	public static void main(String[] args) {
-//		ProductDao productDao = new ProductDao();
-//		List<Product> products = productDao.search("ao nam");
-//		System.out.println(products);
-//	}
 	
+	// ham nay de lay product theo category_id
 	public List<Product> getProductByCategoryId(int categoryId) {
 		List<Product> products = new ArrayList<>();
 		String sql = "select * from products where status = 1 ";
@@ -139,8 +127,9 @@ public class ProductDao extends DBContext {
 		if (categoryId != 0) {
 			sql += "and category_id = " + categoryId; 
 		}
-		
-		try (PreparedStatement ps = connection.prepareStatement(sql);) {
+
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -165,9 +154,25 @@ public class ProductDao extends DBContext {
 		return products;
 	}
 	
-//	public static void main(String[] args) {
-//		ProductDao productDao = new ProductDao();
-//		List<Product> products = productDao.getProductByCategoryId(1);
+	/*
+	public static void main(String[] args) {
+		ProductDao productDao = new ProductDao();
+		
+		// test chuc nang cho ham lay tat ca product
+//		List<Product> products = productDao.getAllProducts();
 //		System.out.println(products);
-//	}
+		
+		// test chuc nang cho ham lay product theo id
+//		Product product = productDao.getProductById(13);
+//		System.out.println(product);
+		
+		// test chuc nang search
+//		List<Product> products = productDao.search("ao nam");
+//		System.out.println(products);
+		
+		// test chuc nang cho ham lay product theo category_id
+		List<Product> products = productDao.getProductByCategoryId(1);
+		System.out.println(products);
+	}
+	*/
 }

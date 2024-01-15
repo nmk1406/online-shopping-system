@@ -17,7 +17,7 @@ import dto.Item;
 import dto.Product;
 
 @WebServlet("/cart")
-public class CartController extends HttpServlet {
+public class CartControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -60,8 +60,6 @@ public class CartController extends HttpServlet {
 		Cookie cookie = new Cookie("cart", txt);
 		cookie.setMaxAge(30*24*60*60);
 		response.addCookie(cookie);
-		request.setAttribute("cart", cart);
-		
 		request.setAttribute("cart", cart);
 		
 		RequestDispatcher rd;

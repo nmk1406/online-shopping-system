@@ -8,7 +8,6 @@
 <body>
 	<div class="site-wrap">
 		<jsp:include page="template/header.jsp"/>
-	
 		<div class="bg-light py-3">
 			<div class="container">
 				<div class="row">
@@ -20,7 +19,6 @@
 				</div>
 			</div>
 		</div>
-	
 		<div class="site-section">
 			<div class="container">
 				<div class="row mb-5">
@@ -63,7 +61,6 @@
 							</div>
 						</div>
 					</div>
-					
 					<div class="col-md-3 order-1 mb-5 mb-md-0">
 						<div class="border p-4 rounded mb-4">
 							<h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>

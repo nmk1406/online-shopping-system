@@ -70,6 +70,7 @@ public class Cart {
 				String[] txt1 = txt.split("/");
 				for (String txt2 : txt1) {
 					String[] txt3 = txt2.split(":");
+					
 					int id = Integer.parseInt(txt3[0]);
 					int quantity = Integer.parseInt(txt3[1]);
 					Product product = getProductById(id, products);
