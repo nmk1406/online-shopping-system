@@ -30,7 +30,7 @@
 						<h6 class="text-black">${product.category.name}</h6>
 	                    <p>${product.description}</p>
 	                    <p><strong class="text-primary h4">$${product.price}</strong></p>
-	                    <form action="buy" method="post">
+	                    <form action="add-cart" method="post">
 	                    	<div class="mb-3">
 	                    		<input name="id" value="${product.id}" type="hidden">
 	                        	<input name="quantity" value="1" type="hidden">

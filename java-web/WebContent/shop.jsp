@@ -45,15 +45,14 @@
 								<div class="site-block-27">
 									<ul>
 										<c:forEach begin="${1}" end="${num}" var="i">
-											<c:set var="url" value="${url}"/>
 											<c:if test="${url == '/shop'}">
-												<li><a href="shop?page=${i}">${i}</a></li>
+												<li><a class="${i==page?'active':''}" href="shop?page=${i}">${i}</a></li>
 											</c:if>
 											<c:if test="${url == '/search'}">
-												<li><a href="search?txt=${txt}&page=${i}">${i}</a></li>
+												<li><a class="${i==page?'active':''}" href="search?txt=${txt}&page=${i}">${i}</a></li>
 											</c:if>
 											<c:if test="${url == '/category'}">
-												<li><a href="category?id=${categoryId}&page=${i}">${i}</a></li>
+												<li><a class="${i==page?'active':''}" href="category?id=${categoryId}&page=${i}">${i}</a></li>
 											</c:if>
 										</c:forEach>
 									</ul>

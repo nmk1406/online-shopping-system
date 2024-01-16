@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/buy")
-public class BuyControl extends HttpServlet {
+@WebServlet("/add-cart")
+public class AddCartControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,9 +35,9 @@ public class BuyControl extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		if (txt.isEmpty()) {
-			txt = id + ":" + quantity;
+			txt = id + ":" + quantity + "/";
 		} else {
-			txt += "/" + id + ":" + quantity;
+			txt += id + ":" + quantity + "/";
 		}
 		
 		Cookie cookie = new Cookie("cart", txt);
