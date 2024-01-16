@@ -38,23 +38,21 @@
 	                            <tbody>
 		                            <c:forEach items="${cart.items}" var="item">
 		                                <tr>
-		                                    <td class="product-thumbnail">
+		                                    <td style="min-width: 240px">
 		                                        <img src="${item.product.image}" alt="Image" class="img-fluid">
 		                                    </td>
-		                                    <td>
-		                                        <input name="product-name" class="form-control-plaintext h5 text-black"
-		                                        	value="${item.product.name}" style="text-align: center" disabled="disabled">
+		                                    <td style="min-width: 240px">
+		                                        <h2 class="h5 text-black">${item.product.name}</h2>
 		                                    </td>
-		                                    <td>
-		                                        <input name="product-price" class="form-control-plaintext h5 text-black"
-		                                        	value="${item.price}" style="text-align: center" disabled="disabled">
+		                                    <td style="min-width: 160px">
+		                                        <h2 class="h5 text-black">$${item.price}</h2>
 		                                    </td>
-		                                    <td style="min-width: 180px">
-		                                        <div class="input-group" style="max-width: fit-content; margin: 0;">
+		                                    <td style="min-width: 160px">
+		                                        <div class="input-group" >
 		                                            <div class="input-group-prepend">
 		                                            	<a href="edit-cart?id=${item.product.id}&quantity=-1">
 			                                                <button class="btn btn-outline-primary" type="button">
-			                                                    &minus;
+			                                                	&minus;
 			                                                </button>
 		                                                </a>
 		                                            </div>
@@ -63,21 +61,17 @@
 		                                            <div class="input-group-append">
 		                                            	<a href="edit-cart?id=${item.product.id}&quantity=1">
 			                                                <button class="btn btn-outline-primary" type="button">
-			                                                    &plus;
+			                                                	&plus;
 			                                                </button>
 			                                            </a>
 		                                            </div>
 		                                        </div>
 		                                    </td>
-		                                    <td>
-		                                        <input name="product-price-total" class="form-control-plaintext h5 text-black"
-		                                               value="${item.price * item.quantity}" style="text-align: center" disabled="disabled">
+		                                    <td style="min-width: 160px">
+		                                    	<h2 class="h5 text-black">$${item.price * item.quantity}</h2>
 		                                    </td>
-		                                    <td>
-		                                    	<form action="edit-cart" method="post">
-		                                    		<input type="hidden" name="id" value="${item.product.id}">
-													<input type="submit" value="remove" class="btn btn-primary btn-sm">
-												</form>
+		                                    <td style="min-width: 140px">
+												<a href="remove-cart?id=${item.product.id}" class="btn btn-primary btn-sm">Remove</a>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>
@@ -90,7 +84,7 @@
 	                <div class="col-md-6">
 	                    <div class="row mb-5">
 	                        <div class="col-md-6 mb-3 mb-md-0">
-	                            <a href="shop" class="btn btn-outline-primary btn-sm btn-block">Continue shopping</a>
+	                            <a href="shop" class="btn btn-outline-primary btn-sm">Continue shopping</a>
 	                        </div>
 	                    </div>
 	                    <div class="row">
@@ -120,8 +114,7 @@
 	                                </div>
 	
 	                                <div class="col-md-6 text-right">
-	                                    <input name="order-price-total" class="form-control-plaintext h5 text-black"
-	                                           value="${total_price}" style="text-align: center" readonly>
+	                                	<span class="text-black" style="font-size: 1.5em">$${cart.totalMoney}</span>
 	                                </div>
 	                            </div>
 	                            <div class="row">

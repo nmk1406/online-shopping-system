@@ -43,26 +43,25 @@ public class CartControl extends HttpServlet {
 		/*
 		 * neu sl san pham trong gio hang lon hon sl san pham trong db
 		 * se gan sl san pham trong gio hang thanh so luong san pham trong db
+		 * cap nhat lai txt cho cookie
 		 */
-		for (Item item : items) {
-			if (item.getQuantity() < item.getProduct().getQuantity()) {
-				item.setQuantity(item.getQuantity());
-			} else {
-				item.setQuantity(item.getProduct().getQuantity());
-			}
-		}
-		
-		txt = "";
+		String out= "";
 		if (items.size() > 0) {
-			txt = items.get(0).getProduct().getId() + ":" + items.get(0).getQuantity() + "/";
-			for (int i = 1; i < items.size(); i++) {
-				txt += items.get(i).getProduct().getId() + ":" + items.get(i).getQuantity() + "/";
+			for (Item item : items) {
+				if (item.getQuantity() < item.getProduct().getQuantity()) {
+					item.setQuantity(item.getQuantity());
+				} else {
+					item.setQuantity(item.getProduct().getQuantity());
+				}
+				out += item.getProduct().getId() + ":" + item.getQuantity() + "/";
 			}
 		}
 		
-		Cookie cookie = new Cookie("cart", txt);
-		cookie.setMaxAge(30 * 24 * 60 * 60);
-		response.addCookie(cookie);
+		if (!out.isEmpty()) {
+			Cookie cookie = new Cookie("cart", out);
+			cookie.setMaxAge(30 * 24 * 60 * 60);
+			response.addCookie(cookie);
+		}
 		
 		request.setAttribute("cart", cart);
 		

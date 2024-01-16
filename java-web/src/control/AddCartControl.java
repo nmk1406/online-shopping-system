@@ -34,11 +34,7 @@ public class AddCartControl extends HttpServlet {
 		String quantity = request.getParameter("quantity");
 		String id = request.getParameter("id");
 		
-		if (txt.isEmpty()) {
-			txt = id + ":" + quantity + "/";
-		} else {
-			txt += id + ":" + quantity + "/";
-		}
+		txt += id + ":" + quantity + "/";
 		
 		Cookie cookie = new Cookie("cart", txt);
 		cookie.setMaxAge(30 * 24 * 60 * 60);
