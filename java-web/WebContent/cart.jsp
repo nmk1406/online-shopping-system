@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 mb-0">
-						<a href="index.html">Home</a>
+						<a href="shop">Home</a>
 						<span class="mx-2 mb-0">/</span>
 						<strong class="text-black">Cart</strong>
 					</div>
@@ -24,6 +24,7 @@
 	            <div class="row mb-5">
 	                <div class="col-md-12">
 	                    <div class="site-blocks-table">
+	                    	<c:if test="${not empty cart}">
 	                        <table class="table table-bordered">
 	                            <thead>
 		                            <tr>
@@ -77,6 +78,10 @@
 		                            </c:forEach>
 	                            </tbody>
 	                        </table>
+	                        </c:if>
+	                        <c:if test="${empty cart}">
+	                        	<label class="text-black h4">Your cart is empty.</label>
+	                        </c:if>
 	                    </div>
 	                </div>
 	            </div>
@@ -119,7 +124,7 @@
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-md-12">
-	                                    <a href="checkout.jsp" class="btn btn-primary btn-lg py-3 btn-block">
+	                                    <a href="checkout" class="btn btn-primary btn-lg py-3 btn-block">
 	                                        Checkout
 	                                    </a>
 	                                </div>

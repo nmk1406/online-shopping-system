@@ -57,7 +57,6 @@ public class CategoryDao {
 	}
 	
 	/*
-	// test chuc nang cho ham lay category theo id
 	public static void main(String[] args) {
 		CategoryDao categoryDao = new CategoryDao();
 		

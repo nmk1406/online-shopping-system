@@ -63,8 +63,6 @@ public class CartControl extends HttpServlet {
 			response.addCookie(cookie);
 		}
 		
-		request.setAttribute("cart", cart);
-		
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("cart.jsp");
 		rd.forward(request, response);

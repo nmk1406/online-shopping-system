@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 mb-0">
-						<a href="index.html">Home</a>
+						<a href="shop">Home</a>
 						<span class="mx-2 mb-0">/</span>
 						<strong class="text-black">${product.name}</strong>
 					</div>
@@ -21,6 +21,7 @@
 		</div>
 	    <div class="site-section">
 	        <div class="container">
+	        	<c:if test="${not empty product}">
 	            <div class="row">
 	                <div class="col-md-6">
 	                    <img src="${product.image}" alt="Image" class="img-fluid">
@@ -42,6 +43,10 @@
 	                    </form>
 	                </div>
 	            </div>
+	            </c:if>
+	            <c:if test="${empty product}">
+	            	<label class="text-black h4">This product isn't available.</label>
+	            </c:if>
 	        </div>
 	    </div>
     	<jsp:include page="template/footer.jsp"/>

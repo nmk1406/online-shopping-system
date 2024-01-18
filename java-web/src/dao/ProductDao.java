@@ -16,7 +16,7 @@ public class ProductDao {
 	// ham nay de lay tat ca product
 	public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<>();
-		String sql = "select * from products";
+		String sql = "select * from products where status = 1";
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -46,7 +46,7 @@ public class ProductDao {
 
 	// ham nay de lay product theo id
 	public Product getProductById(int id) {
-		String sql = "select * from products where id = ?";
+		String sql = "select * from products where id = ? and status = 1";
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
