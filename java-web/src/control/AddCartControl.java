@@ -40,6 +40,6 @@ public class AddCartControl extends HttpServlet {
 		cookie.setMaxAge(30 * 24 * 60 * 60);
 		response.addCookie(cookie);
 		
-		response.sendRedirect("product-detail?id=" + id);
+		response.sendRedirect("product?id=" + id);
 	}
 }

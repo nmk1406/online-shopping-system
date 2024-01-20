@@ -1,36 +1,20 @@
 package dto;
 
 public class OrderDetail {
-	private int orderId;
-	private int productId;
 	private int quantity;
 	private double price;
+	private Order order;
+	private Product product;
 
 	public OrderDetail() {
-		
+
 	}
 
-	public OrderDetail(int orderId, int productId, int quantity, double price) {
-		this.orderId = orderId;
-		this.productId = productId;
+	public OrderDetail(int quantity, double price, Order order, Product product) {
 		this.quantity = quantity;
 		this.price = price;
-	}
-
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+		this.order = order;
+		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -47,5 +31,27 @@ public class OrderDetail {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDetail [quantity=" + quantity + ", price=" + price + ", order=" + order + ", product=" + product
+				+ "]";
 	}
 }

@@ -14,9 +14,12 @@ import utils.DBUtils;
 public class ProductDao {
 
 	// ham nay de lay tat ca product
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts(boolean status) {
 		List<Product> products = new ArrayList<>();
-		String sql = "select * from products where status = 1";
+		String sql = "select * from products ";
+		if (status == true) {
+			sql += "where status = 1";
+		}
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -45,8 +48,11 @@ public class ProductDao {
 	}
 
 	// ham nay de lay product theo id
-	public Product getProductById(int id) {
-		String sql = "select * from products where id = ? and status = 1";
+	public Product getProductById(int id, boolean status) {
+		String sql = "select * from products where id = ? ";
+		if (status == true) {
+			sql += "and status = 1";
+		}
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -154,25 +160,24 @@ public class ProductDao {
 		return products;
 	}
 
-	/*
+	
 	public static void main(String[] args) {
 		ProductDao productDao = new ProductDao();
 		
 		// test chuc nang cho ham lay tat ca product
-//		List<Product> products = productDao.getAllProducts();
+//		List<Product> products = productDao.getAllProducts(true);
 //		System.out.println(products);
 		
 		// test chuc nang cho ham lay product theo id
-//		Product product = productDao.getProductById(13);
-//		System.out.println(product);
+		Product product = productDao.getProductById(4, false);
+		System.out.println(product);
 		
 		// test chuc nang search
 //		List<Product> products = productDao.search("ao nam");
 //		System.out.println(products);
 		
 		// test chuc nang cho ham lay product theo category_id
-		List<Product> products = productDao.getProductByCategoryId(1);
-		System.out.println(products);
+//		List<Product> products = productDao.getProductByCategoryId(1);
+//		System.out.println(products);
 	}
-	*/
 }

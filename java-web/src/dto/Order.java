@@ -101,4 +101,11 @@ public class Order {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", totalMoney=" + totalMoney + ", fullname=" + fullname
+				+ ", address=" + address + ", email=" + email + ", phone=" + phone + ", status=" + status + ", userId="
+				+ userId + "]";
+	}
 }

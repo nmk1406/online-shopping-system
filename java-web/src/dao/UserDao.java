@@ -9,6 +9,7 @@ import dto.User;
 import utils.DBUtils;
 
 public class UserDao {
+	
 	public User validate(String email, String password) {
 		String sql = "select * from users where email = ? and password = ?";
 		

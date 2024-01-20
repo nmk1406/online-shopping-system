@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="site-section">
-			<div class="container">
+			<div class="container" >
 				<div class="row mb-5">
 					<div class="col-md-9 order-2">
 						<div class="row mb-5">
@@ -28,12 +28,12 @@
 								<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 									<div class="block-4 text-center border" style="height: 100%">
 										<figure class="block-4-image">
-											<a href="product-detail?id=${product.id}">	
+											<a href="product?id=${product.id}">	
 												<img src="${product.image}" alt="Image placeholder" class="img-fluid">
 											</a>
 										</figure>
 										<div class="block-4-text p-4">
-											<h3><a href="product-detail?id=${product.id}">${product.name} ${action}</a></h3>
+											<h3><a href="product?id=${product.id}">${product.name} ${action}</a></h3>
 											<p class="mb-0">$${product.price}</p>
 										</div>
 									</div>

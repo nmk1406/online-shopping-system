@@ -23,7 +23,7 @@ public class CartControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts();
+		List<Product> products = productDao.getAllProducts(true);
 
 		Cookie[] cookies = request.getCookies();
 		String txt = "";
@@ -62,6 +62,8 @@ public class CartControl extends HttpServlet {
 			cookie.setMaxAge(30 * 24 * 60 * 60);
 			response.addCookie(cookie);
 		}
+		
+		request.setAttribute("cart", cart);
 		
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("cart.jsp");

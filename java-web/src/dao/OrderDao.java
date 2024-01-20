@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.Cart;
 import dto.Item;
@@ -13,11 +15,12 @@ import dto.User;
 import utils.DBUtils;
 
 public class OrderDao {
+	
 	public void addOrder(User user, Cart cart, Order order) {
 		LocalDate curDate = LocalDate.now();
 		String date = curDate.toString();
 		
-		String sql1 = "insert into orders (order_date, total_money, fullname, address, email, phone, status, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql1 = "insert into orders (order_date, total_money, fullname, address, email, phone, user_id) values (?, ?, ?, ?, ?, ?, ?)";
 		String sql2 = "select id from orders order by id desc limit 1";
 		String sql3 = "insert into order_details (order_id, product_id, quantity, price) values (?, ?, ?, ?)";
 		String sql4 = "update products set quantity = quantity - ? where id = ?";
@@ -32,8 +35,7 @@ public class OrderDao {
 			ps1.setString(4, order.getAddress());
 			ps1.setString(5, order.getEmail());
 			ps1.setString(6, order.getPhone());
-			ps1.setInt(7, order.getStatus());
-			ps1.setInt(8, user.getId());
+			ps1.setInt(7, user.getId());
 			ps1.executeUpdate();
 			
 			PreparedStatement ps2 = connection.prepareStatement(sql2);
@@ -68,5 +70,62 @@ public class OrderDao {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+	}
+	
+	public List<Order> getOrder(User user) {
+		List<Order> orders = new ArrayList<>();
+		String sql = "select * from orders where user_id = ?";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps1 = connection.prepareStatement(sql)) {
+			ps1.setInt(1, user.getId());
+			ResultSet rs = ps1.executeQuery();
+			
+			while (rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setOrderDate(rs.getDate("order_date"));
+				order.setTotalMoney(rs.getDouble("total_money"));
+				order.setFullname(rs.getString("fullname"));
+				order.setAddress(rs.getString("address"));
+				order.setEmail(rs.getString("email"));
+				order.setPhone(rs.getString("phone"));
+				order.setStatus(rs.getInt("status"));
+				order.setUserId(rs.getInt("user_id"));
+				
+				orders.add(order);
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return orders;
+	}
+	
+	public Order getOrderById(int id) {
+		String sql = "select * from orders where id = ?";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps1 = connection.prepareStatement(sql)) {
+			ps1.setInt(1, id);
+			ResultSet rs = ps1.executeQuery();
+			
+			while (rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setOrderDate(rs.getDate("order_date"));
+				order.setTotalMoney(rs.getDouble("total_money"));
+				order.setFullname(rs.getString("fullname"));
+				order.setAddress(rs.getString("address"));
+				order.setEmail(rs.getString("email"));
+				order.setPhone(rs.getString("phone"));
+				order.setStatus(rs.getInt("status"));
+				order.setUserId(rs.getInt("user_id"));
+				
+				return order;
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return null;
 	}
 }

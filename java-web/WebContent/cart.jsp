@@ -28,27 +28,31 @@
 	                        <table class="table table-bordered">
 	                            <thead>
 		                            <tr>
-		                                <th class="product-thumbnail">Image</th>
-		                                <th class="product-name">Product</th>
-		                                <th class="product-price">Price</th>
-		                                <th class="product-quantity">Quantity</th>
-		                                <th class="product-total">Total</th>
-		                                <th class="product-remove">Action</th>
+		                            	<th>Id</th>
+		                            	<th>Product</th>
+		                                <th style="width: 300px">Image</th>
+		                                <th>Price</th>
+		                                <th>Quantity</th>
+		                                <th>Total</th>
+		                                <th>Action</th>
 		                            </tr>
 	                            </thead>
 	                            <tbody>
 		                            <c:forEach items="${cart.items}" var="item">
 		                                <tr>
-		                                    <td style="min-width: 240px">
-		                                        <img src="${item.product.image}" alt="Image" class="img-fluid">
+		                                    <td>
+		                                        <h2 class="h5 text-black">${item.product.id}</h2>
 		                                    </td>
-		                                    <td style="min-width: 240px">
+		                                    <td>
 		                                        <h2 class="h5 text-black">${item.product.name}</h2>
 		                                    </td>
-		                                    <td style="min-width: 160px">
+		                                    <td>
+		                                        <img src="${item.product.image}" alt="Image" class="img-fluid">
+		                                    </td>
+		                                    <td>
 		                                        <h2 class="h5 text-black">$${item.price}</h2>
 		                                    </td>
-		                                    <td style="min-width: 160px">
+		                                    <td>
 		                                        <div class="input-group" >
 		                                            <div class="input-group-prepend">
 		                                            	<a href="edit-cart?id=${item.product.id}&quantity=-1">
@@ -68,10 +72,10 @@
 		                                            </div>
 		                                        </div>
 		                                    </td>
-		                                    <td style="min-width: 160px">
+		                                    <td>
 		                                    	<h2 class="h5 text-black">$${item.price * item.quantity}</h2>
 		                                    </td>
-		                                    <td style="min-width: 140px">
+		                                    <td>
 												<a href="remove-cart?id=${item.product.id}" class="btn btn-primary btn-sm">Remove</a>
 		                                    </td>
 		                                </tr>

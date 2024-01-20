@@ -22,7 +22,7 @@ public class ShopControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> list = productDao.getAllProducts();
+		List<Product> list = productDao.getAllProducts(true);
 		
 		CategoryDao categoryDao = new CategoryDao();
 		List<Category> categories = categoryDao.getAllCategories();
