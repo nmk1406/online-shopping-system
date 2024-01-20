@@ -13,6 +13,8 @@ import dto.Product;
 import utils.DBUtils;
 
 public class OrderDetailDao {
+	
+	// ham lay orderDetail theo orderId
 	public List<OrderDetail> getOrderDetailByOrderId(int orderId) {
 		List<OrderDetail> orderDetails = new ArrayList<>();
 		String sql = "select * from order_details where order_id = ?";
@@ -27,12 +29,12 @@ public class OrderDetailDao {
 				
 				OrderDao orderDao = new OrderDao();
 				Order order = orderDao.getOrderById(rs.getInt("order_id"));
+				orderDetail.setOrder(order);
 				
 				ProductDao productDao = new ProductDao();
-				Product product = productDao.getProductById(rs.getInt("product_id"), false);
-				
-				orderDetail.setOrder(order);
+				Product product = productDao.getProductById(rs.getInt("product_id"));
 				orderDetail.setProduct(product);
+				
 				orderDetail.setQuantity(rs.getInt("quantity"));
 				orderDetail.setPrice(rs.getDouble("price"));
 				
@@ -44,9 +46,13 @@ public class OrderDetailDao {
 		return orderDetails;
 	}
 	
+	/*
 	public static void main(String[] args) {
 		OrderDetailDao orderDetailDao = new OrderDetailDao();
+		
+		// test ham lay orderDetail theo orderId
 		List<OrderDetail> orderDetails = orderDetailDao.getOrderDetailByOrderId(4);
 		System.out.println(orderDetails);
 	}
+	*/
 }

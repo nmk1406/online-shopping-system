@@ -24,7 +24,7 @@ public class ProductControl extends HttpServlet {
 		try {
 			id = Integer.parseInt(idRaw);
 			ProductDao productDao = new ProductDao();
-			Product product = productDao.getProductById(id, true);
+			Product product = productDao.getProductById(id);
 			
 			request.setAttribute("product", product);
 			

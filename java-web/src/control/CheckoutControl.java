@@ -26,7 +26,7 @@ public class CheckoutControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts(true);
+		List<Product> products = productDao.getAllProducts();
 
 		Cookie[] cookies = request.getCookies();
 		String txt = "";
@@ -61,7 +61,7 @@ public class CheckoutControl extends HttpServlet {
 		order.setPhone(phone);
 		
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts(true);
+		List<Product> products = productDao.getAllProducts();
 		
 		Cookie[] cookies = request.getCookies();
 		String txt = "";
@@ -83,7 +83,7 @@ public class CheckoutControl extends HttpServlet {
 			rd.forward(request, response);
 		} else {
 			OrderDao orderDao = new OrderDao();
-			orderDao.addOrder(user, cart, order);
+			orderDao.insertOrder(user, cart, order);
 			Cookie cookie = new Cookie("cart", "");
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);

@@ -13,14 +13,11 @@ import utils.DBUtils;
 
 public class ProductDao {
 
-	// ham nay de lay tat ca product
-	public List<Product> getAllProducts(boolean status) {
+	// ham lay tat ca product
+	public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<>();
-		String sql = "select * from products ";
-		if (status == true) {
-			sql += "where status = 1";
-		}
-
+		String sql = "select * from products where status = 1";
+		
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
@@ -47,12 +44,9 @@ public class ProductDao {
 		return products;
 	}
 
-	// ham nay de lay product theo id
-	public Product getProductById(int id, boolean status) {
-		String sql = "select * from products where id = ? ";
-		if (status == true) {
-			sql += "and status = 1";
-		}
+	// ham lay product theo id
+	public Product getProductById(int id) {
+		String sql = "select * from products where status = 1 and id = ?";
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -81,17 +75,14 @@ public class ProductDao {
 		return null;
 	}
 	
-	// ham nay de lay product theo category_id
+	// ham lay product theo category_id
 	public List<Product> getProductByCategoryId(int categoryId) {
 		List<Product> products = new ArrayList<>();
-		String sql = "select * from products where status = 1 ";
+		String sql = "select * from products where status = 1 and category_id = ?";
 		
-		if (categoryId != 0) {
-			sql += "and category_id = " + categoryId; 
-		}
-
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, categoryId);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -116,16 +107,16 @@ public class ProductDao {
 		return products;
 	}
 
-	// ham nay de phan trang
+	// ham phan trang
 	public List<Product> getProductsByPage(List<Product> products, int start, int end) {
-		ArrayList<Product> arr = new ArrayList<>();
+		List<Product> list = new ArrayList<>();
 		for (int i = start; i < end; i++) {
-			arr.add(products.get(i));
+			list.add(products.get(i));
 		}
-		return arr;
+		return list;
 	}
 	
-	// ham nay search theo name
+	// ham search theo name
 	public List<Product> search(String txt) {
 		List<Product> products = new ArrayList<>();
 		String sql = "select * from products where status = 1 ";
@@ -160,24 +151,25 @@ public class ProductDao {
 		return products;
 	}
 
-	
+	/*
 	public static void main(String[] args) {
 		ProductDao productDao = new ProductDao();
 		
-		// test chuc nang cho ham lay tat ca product
-//		List<Product> products = productDao.getAllProducts(true);
-//		System.out.println(products);
+		// test ham lay tat ca product
+		List<Product> products = productDao.getAllProducts();
+		System.out.println(products);
 		
-		// test chuc nang cho ham lay product theo id
-		Product product = productDao.getProductById(4, false);
+		// test ham lay product theo id
+		Product product = productDao.getProductById(4);
 		System.out.println(product);
 		
-		// test chuc nang search
-//		List<Product> products = productDao.search("ao nam");
-//		System.out.println(products);
+		// test search theo name
+		List<Product> products = productDao.search("ao nam");
+		System.out.println(products);
 		
-		// test chuc nang cho ham lay product theo category_id
-//		List<Product> products = productDao.getProductByCategoryId(1);
-//		System.out.println(products);
+		// test ham lay product theo category_id
+		List<Product> products = productDao.getProductByCategoryId(1);
+		System.out.println(products);
 	}
+	*/
 }

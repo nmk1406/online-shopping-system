@@ -12,7 +12,7 @@ import utils.DBUtils;
 
 public class CategoryDao {
 	
-	// ham nay de lay tat ca category
+	// ham lay tat ca category
 	public List<Category> getAllCategories() {
 		List<Category> categories = new ArrayList<>();
 		String sql = "select * from categories";
@@ -34,7 +34,7 @@ public class CategoryDao {
 		return categories;
 	}
 	
-	// ham nay de lay category theo id
+	// ham lay category theo id
 	public Category getCategoryById(int id) {
 		String sql = "select * from categories where id = ?";
 		
@@ -60,11 +60,11 @@ public class CategoryDao {
 	public static void main(String[] args) {
 		CategoryDao categoryDao = new CategoryDao();
 		
-		// test chuc nang cho ham lay tat ca category
-//		List<Category> categories = categoryDao.getAllCategories();
-//		System.out.println(categories);
+		// test ham lay tat ca category
+		List<Category> categories = categoryDao.getAllCategories();
+		System.out.println(categories);
 		
-		// test chuc nang cho ham lay category theo id
+		// test ham lay category theo id
 		Category category = categoryDao.getCategoryById(1);
 		System.out.println(category);
 	}

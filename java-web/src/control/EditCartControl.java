@@ -22,7 +22,7 @@ public class EditCartControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts(true);
+		List<Product> products = productDao.getAllProducts();
 
 		Cookie[] cookies = request.getCookies();
 		String txt = "";
@@ -46,7 +46,7 @@ public class EditCartControl extends HttpServlet {
 			id = Integer.parseInt(idRaw);
 			quantity = Integer.parseInt(quantityRaw);
 			
-			Product product = productDao.getProductById(id, true);
+			Product product = productDao.getProductById(id);
 			int productQuantity = product.getQuantity();
 			
 			if (quantity == -1 && (cart.getQuantityById(id) <= 1)) {

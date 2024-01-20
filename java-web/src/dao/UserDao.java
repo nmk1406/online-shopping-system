@@ -10,6 +10,7 @@ import utils.DBUtils;
 
 public class UserDao {
 	
+	// ham authentication user 
 	public User validate(String email, String password) {
 		String sql = "select * from users where email = ? and password = ?";
 		

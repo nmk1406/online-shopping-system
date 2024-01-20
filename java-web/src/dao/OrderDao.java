@@ -16,7 +16,8 @@ import utils.DBUtils;
 
 public class OrderDao {
 	
-	public void addOrder(User user, Cart cart, Order order) {
+	// ham insert order
+	public void insertOrder(User user, Cart cart, Order order) {
 		LocalDate curDate = LocalDate.now();
 		String date = curDate.toString();
 		
@@ -39,13 +40,12 @@ public class OrderDao {
 			ps1.executeUpdate();
 			
 			PreparedStatement ps2 = connection.prepareStatement(sql2);
-			ResultSet rs = ps2.executeQuery();
+			ResultSet rs2 = ps2.executeQuery();
 			
-			if (rs.next()) {
-				int orderId = rs.getInt("id");
+			if (rs2.next()) {
 				for (Item item : cart.getItems()) {
 					PreparedStatement ps3 = connection.prepareStatement(sql3);
-					ps3.setInt(1, orderId);
+					ps3.setInt(1, rs2.getInt("id"));
 					ps3.setInt(2, item.getProduct().getId());
 					ps3.setInt(3, item.getQuantity());
 					ps3.setDouble(4, item.getPrice());
@@ -61,10 +61,10 @@ public class OrderDao {
 			}
 			
 			PreparedStatement ps5 = connection.prepareStatement(sql5);
-			ResultSet rs2 = ps5.executeQuery();
-			while (rs2.next()) {
+			ResultSet rs5 = ps5.executeQuery();
+			while (rs5.next()) {
 				PreparedStatement ps6 = connection.prepareStatement(sql6);
-				ps6.setInt(1, rs2.getInt("id"));
+				ps6.setInt(1, rs5.getInt("id"));
 				ps6.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -72,14 +72,15 @@ public class OrderDao {
 		}
 	}
 	
-	public List<Order> getOrder(User user) {
+	// ham lay order theo userId
+	public List<Order> getOrderByUserId(int userId) {
 		List<Order> orders = new ArrayList<>();
 		String sql = "select * from orders where user_id = ?";
 		
 		try (Connection connection = new DBUtils().getConnection();
-				PreparedStatement ps1 = connection.prepareStatement(sql)) {
-			ps1.setInt(1, user.getId());
-			ResultSet rs = ps1.executeQuery();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, userId);
+			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				Order order = new Order();
@@ -101,13 +102,14 @@ public class OrderDao {
 		return orders;
 	}
 	
+	// ham lay order theo id
 	public Order getOrderById(int id) {
 		String sql = "select * from orders where id = ?";
 		
 		try (Connection connection = new DBUtils().getConnection();
-				PreparedStatement ps1 = connection.prepareStatement(sql)) {
-			ps1.setInt(1, id);
-			ResultSet rs = ps1.executeQuery();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				Order order = new Order();
@@ -128,4 +130,36 @@ public class OrderDao {
 		}
 		return null;
 	}
+	
+	/*
+	public static void main(String[] args) {
+		OrderDao orderDao = new OrderDao();
+		
+//		// test ham lay order theo id
+//		Order order = orderDao.getOrderById(4);
+//		System.out.println(order);
+//		
+//		// test ham lay order theo userId
+//		List<Order> orders = orderDao.getOrderByUserId(3);
+//		System.out.println(orders);
+		
+		// test ham them du lieu bang order
+		UserDao userDao = new UserDao();
+		User user = userDao.validate("c@gmail.com", "c");
+		
+		ProductDao productDao = new ProductDao();
+		List<Product> products = productDao.getAllProducts();
+		
+		String txt = "5:2/6:3/"; // 2 product voi id=5, 3 product voi id=6
+		Cart cart = new Cart(txt, products);
+		
+		Order order = new Order();
+		order.setFullname("k");
+		order.setAddress("hcm");
+		order.setEmail("k@gmail.com");
+		order.setPhone("012345678");
+		
+		orderDao.insertOrder(user, cart, order);
+	}
+	*/
 }

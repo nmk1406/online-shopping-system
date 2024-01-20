@@ -30,7 +30,7 @@ public class OrderControl extends HttpServlet {
 			rd.forward(request, response);
 		} else {
 			OrderDao orderDao = new OrderDao();
-			List<Order> orders = orderDao.getOrder(user);
+			List<Order> orders = orderDao.getOrderByUserId(user.getId());
 			request.setAttribute("orders", orders);
 			
 			RequestDispatcher rd;
