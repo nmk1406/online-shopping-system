@@ -23,7 +23,7 @@ public class CartControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts();
+		List<Product> products = productDao.getAllProducts(true);
 
 		Cookie[] cookies = request.getCookies();
 		String txt = "";

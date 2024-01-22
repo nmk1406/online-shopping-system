@@ -56,6 +56,33 @@ public class CategoryDao {
 		return null;
 	}
 	
+	// ham insert category
+	public void insertCategory(Category category) {
+		String sql = "insert into categories (name) values (?)";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, category.getName());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	// ham update category theo id
+	public void updateCategory(Category category) {
+		String sql = "update categories set name = ? where id = ?";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, category.getName());
+			ps.setInt(2, category.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
 	/*
 	public static void main(String[] args) {
 		CategoryDao categoryDao = new CategoryDao();
@@ -67,6 +94,17 @@ public class CategoryDao {
 		// test ham lay category theo id
 		Category category = categoryDao.getCategoryById(1);
 		System.out.println(category);
+		
+		// test ham insert category
+		Category category = new Category();
+		category.setName("aaa");
+		categoryDao.insertCategory(category);
+		
+		// test ham update category theo id
+		Category category = new Category();
+		category.setId(4);
+		category.setName("bbb");
+		categoryDao.updateCategory(category);
 	}
-	*/
+	*/	
 }

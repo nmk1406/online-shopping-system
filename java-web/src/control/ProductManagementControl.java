@@ -15,14 +15,14 @@ import dao.ProductDao;
 import dto.Category;
 import dto.Product;
 
-@WebServlet("/shop")
-public class ShopControl extends HttpServlet {
+@WebServlet("/product-management")
+public class ProductManagementControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDao productDao = new ProductDao();
-		List<Product> list = productDao.getAllProducts(true);
+		List<Product> list = productDao.getAllProducts(false);
 		
 		CategoryDao categoryDao = new CategoryDao();
 		List<Category> categories = categoryDao.getAllCategories();
@@ -55,11 +55,8 @@ public class ShopControl extends HttpServlet {
 		request.setAttribute("num", num);
 		request.setAttribute("page", page);
 
-		String url = request.getServletPath();
-		request.setAttribute("url", url);
-		
 		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("shop.jsp");
+		rd = request.getRequestDispatcher("product-management.jsp");
 		rd.forward(request, response);
 	}
 

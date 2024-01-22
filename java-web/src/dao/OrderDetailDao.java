@@ -32,7 +32,7 @@ public class OrderDetailDao {
 				orderDetail.setOrder(order);
 				
 				ProductDao productDao = new ProductDao();
-				Product product = productDao.getProductById(rs.getInt("product_id"));
+				Product product = productDao.getProductById(rs.getInt("product_id"), false);
 				orderDetail.setProduct(product);
 				
 				orderDetail.setQuantity(rs.getInt("quantity"));

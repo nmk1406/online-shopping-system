@@ -13,6 +13,18 @@ public class Product {
 	public Product() {
 
 	}
+	
+	public Product(String name, int quantity, Double price, String description, String image, int status,
+			Category category) {
+		super();
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+		this.description = description;
+		this.image = image;
+		this.status = status;
+		this.category = category;
+	}
 
 	public Product(int id, String name, int quantity, Double price, String description, String image, int status,
 			Category category) {

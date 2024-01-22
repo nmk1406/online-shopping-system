@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,31 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductDao;
-import dto.Product;
+import dao.CategoryDao;
+import dto.Category;
 
-@WebServlet("/product")
-public class ProductControl extends HttpServlet {
+@WebServlet("/category-management")
+public class CategoryManagementControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idRaw = request.getParameter("id");
-		int id;
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categories = categoryDao.getAllCategories();
 		
-		try {
-			id = Integer.parseInt(idRaw);
-			ProductDao productDao = new ProductDao();
-			Product product = productDao.getProductById(id, true);
-			
-			request.setAttribute("product", product);
-			
-			RequestDispatcher rd;
-			rd = request.getRequestDispatcher("product.jsp");
-			rd.forward(request, response);
-		} catch (NumberFormatException e) {
-			System.out.println(e);
-		}
+		request.setAttribute("categories", categories);
+		
+		RequestDispatcher rd;
+		rd = request.getRequestDispatcher("category-management.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

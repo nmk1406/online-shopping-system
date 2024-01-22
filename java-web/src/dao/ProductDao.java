@@ -14,9 +14,12 @@ import utils.DBUtils;
 public class ProductDao {
 
 	// ham lay tat ca product
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts(boolean all) {
 		List<Product> products = new ArrayList<>();
-		String sql = "select * from products where status = 1";
+		String sql = "select * from products ";
+		if (all == true) {
+			sql += "where status = 1";
+		}
 		
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -45,8 +48,11 @@ public class ProductDao {
 	}
 
 	// ham lay product theo id
-	public Product getProductById(int id) {
-		String sql = "select * from products where status = 1 and id = ?";
+	public Product getProductById(int id, boolean all) {
+		String sql = "select * from products where id = ? ";
+		if (all == true) {
+			sql += "and status = 1";
+		}
 
 		try (Connection connection = new DBUtils().getConnection();
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -150,6 +156,45 @@ public class ProductDao {
 		}
 		return products;
 	}
+	
+	// update product
+	public void updateProduct(Product product) {
+		String sql = "update products set name = ?, image = ?, quantity = ?, price = ?, description = ?, status = ?, category_id = ? where id = ?";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, product.getName());
+			ps.setString(2, product.getImage());
+			ps.setInt(3, product.getQuantity());
+			ps.setDouble(4, product.getPrice());
+			ps.setString(5, product.getDescription());
+			ps.setInt(6, product.getStatus());
+			ps.setInt(7, product.getCategory().getId());
+			ps.setInt(8, product.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	// insert product
+	public void insertProduct(Product product) {
+		String sql = "insert into products (name, quantity, price, description, image, status, category_id) values (?, ?, ?, ?, ?, ?, ?)";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, product.getName());
+			ps.setInt(2, product.getQuantity());
+			ps.setDouble(3, product.getPrice());
+			ps.setString(4, product.getDescription());
+			ps.setString(5, product.getImage());
+			ps.setInt(6, product.getStatus());
+			ps.setInt(7, product.getCategory().getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 
 	/*
 	public static void main(String[] args) {
@@ -170,6 +215,25 @@ public class ProductDao {
 		// test ham lay product theo category_id
 		List<Product> products = productDao.getProductByCategoryId(1);
 		System.out.println(products);
+		
+		// update product
+		CategoryDao categoryDao = new CategoryDao();
+		Category category = categoryDao.getCategoryById(1);
+		Product product = new Product(1, "bbbbb", 10, 10.0, "aaaaa", "static/images/cloth_2.jpg", 1, category);
+		productDao.updateProduct(product);
+		
+		// insert product
+		CategoryDao categoryDao = new CategoryDao();
+		Category category = categoryDao.getCategoryById(1);
+		Product product = new Product();
+		product.setName("bbbb");
+		product.setQuantity(10);
+		product.setPrice(10.0);
+		product.setDescription("aaaa");
+		product.setImage("static/images/cloth_2.jpg");
+		product.setStatus(1);
+		product.setCategory(category);
+		productDao.insertProduct(product);
 	}
 	*/
 }
