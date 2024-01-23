@@ -131,7 +131,59 @@ public class OrderDao {
 		return null;
 	}
 	
-	/*
+	// ham lay tat ca order
+	public List<Order> getAllOrders() {
+		List<Order> orders = new ArrayList<>();
+		String sql = "select * from orders";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setOrderDate(rs.getDate("order_date"));
+				order.setTotalMoney(rs.getDouble("total_money"));
+				order.setFullname(rs.getString("fullname"));
+				order.setAddress(rs.getString("address"));
+				order.setEmail(rs.getString("email"));
+				order.setPhone(rs.getString("phone"));
+				order.setStatus(rs.getInt("status"));
+				order.setUserId(rs.getInt("user_id"));
+				
+				orders.add(order);
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return orders;
+	}
+	
+	// ham phan trang
+	public List<Order> getOrderByPage(List<Order> orders, int start, int end) {
+		List<Order> list = new ArrayList<>();
+		for (int i = start; i < end; i++) {
+			list.add(orders.get(i));
+		}
+		return list;
+	}
+	
+	// ham update status
+	public void updateStatus(Order order) {
+		String sql = "update orders set status = ? where id = ?";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, order.getStatus());
+			ps.setInt(2, order.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		OrderDao orderDao = new OrderDao();
 		
@@ -142,24 +194,30 @@ public class OrderDao {
 //		// test ham lay order theo userId
 //		List<Order> orders = orderDao.getOrderByUserId(3);
 //		System.out.println(orders);
+//		
+//		// test ham them du lieu bang order
+//		UserDao userDao = new UserDao();
+//		User user = userDao.validate("c@gmail.com", "c");
+//		
+//		ProductDao productDao = new ProductDao();
+//		List<Product> products = productDao.getAllProducts();
+//		
+//		String txt = "5:2/6:3/"; // 2 product voi id=5, 3 product voi id=6
+//		Cart cart = new Cart(txt, products);
+//		
+//		Order order = new Order();
+//		order.setFullname("k");
+//		order.setAddress("hcm");
+//		order.setEmail("k@gmail.com");
+//		order.setPhone("012345678");
+//		
+//		orderDao.insertOrder(user, cart, order);
 		
-		// test ham them du lieu bang order
-		UserDao userDao = new UserDao();
-		User user = userDao.validate("c@gmail.com", "c");
+		// test ham update status
+		Order order = orderDao.getOrderById(1);
+		order.setStatus(1);
 		
-		ProductDao productDao = new ProductDao();
-		List<Product> products = productDao.getAllProducts();
-		
-		String txt = "5:2/6:3/"; // 2 product voi id=5, 3 product voi id=6
-		Cart cart = new Cart(txt, products);
-		
-		Order order = new Order();
-		order.setFullname("k");
-		order.setAddress("hcm");
-		order.setEmail("k@gmail.com");
-		order.setPhone("012345678");
-		
-		orderDao.insertOrder(user, cart, order);
+		orderDao.updateStatus(order);
 	}
-	*/
+	
 }

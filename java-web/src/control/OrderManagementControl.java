@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductDao;
-import dto.Product;
+import dao.OrderDao;
+import dto.Order;
 
-@WebServlet("/product-management")
-public class ProductManagementControl extends HttpServlet {
+@WebServlet("/OrderManagementControl")
+public class OrderManagementControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductDao productDao = new ProductDao();
-		List<Product> list = productDao.getAllProducts(false);
+		OrderDao orderDao = new OrderDao();
+		List<Order> list = orderDao.getAllOrders();
 		
 		// phan trang
 		String pageRaw = request.getParameter("page");
@@ -43,9 +43,9 @@ public class ProductManagementControl extends HttpServlet {
 		
 		int start = (page - 1) * numPerPage;
 		int end = Math.min(page * numPerPage, size);
-		List<Product> products = productDao.getProductsByPage(list, start, end);
+		List<Order> orders = orderDao.getOrderByPage(list, start, end);
 		
-		request.setAttribute("products", products);
+		request.setAttribute("orders", orders);
 		request.setAttribute("num", num);
 		request.setAttribute("page", page);
 

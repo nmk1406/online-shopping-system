@@ -62,6 +62,7 @@
 		                                    </td>
 		                                    <td>
 		                                    	<a href="order-detail?id=${order.id}" class="btn btn-primary btn-sm">Detail</a>
+		                                    	<a href="update-order?id=${order.id}" class="btn btn-primary btn-sm">Update</a>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>
