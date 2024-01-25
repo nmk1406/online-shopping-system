@@ -24,14 +24,16 @@
 	            <div class="row mb-5">
 	                <div class="col-md-12">
 	                    <div class="site-blocks-table">
-	                    	<form action="update-order" method="post">
+	                    	<form action="update-user" method="post">
 		                        <table class="table table-bordered">
 		                            <thead>
 			                            <tr>
 			                                <th>Id</th>
-			                                <th>Date</th>
-			                                <th>Total</th>
+			                                <th>Email</th>
+			                                <th>Password</th>
+			                                <th>Phone</th>
 			                                <th>Status</th>
+			                                <th>Role Id</th>
 			                                <th>Action</th>
 			                            </tr>
 		                            </thead>
@@ -39,17 +41,24 @@
 		                                <tr>
 		                                    <td>
 		                                        <input type="text" name="id" class="form-control-plaintext h5 text-black"
-		                                        	value="${order.id}" style="text-align: center" readonly="readonly">
+		                                        	value="${user.id}" style="text-align: center" readonly="readonly">
 		                                    </td>
 		                                    <td>
-		                                        <h2 class="h5 text-black">${order.orderDate}</h2>
+		                                        <h2 class="h5 text-black">${user.email}</h2>
 		                                    </td>
 		                                    <td>
-		                                        <h2 class="h5 text-black">$${order.totalMoney}</h2>
+		                                        <h2 class="h5 text-black">${user.password}</h2>
 		                                    </td>
 		                                    <td>
-		                                    	<input type="number" min="0" max="3" name="status" class="form-control-plaintext h5 text-black"
-		                                    		value="${order.status}" style="text-align: center" placeholder="Type here">
+		                                        <h2 class="h5 text-black">${user.phone}</h2>
+		                                    </td>
+		                                    <td>
+		                                    	<input type="number" min="0" max="1" name="status" class="form-control-plaintext h5 text-black"
+		                                    		value="${user.status}" style="text-align: center" placeholder="Type here">
+		                                    </td>
+		                                    <td>
+		                                    	<input type="number" min="1" max="2" name="roleId" class="form-control-plaintext h5 text-black"
+		                                    		value="${user.roleId}" style="text-align: center" placeholder="Type here">
 		                                    </td>
 		                                    <td>
 		                                    	<input type="submit" class="btn btn-primary btn-sm" value="save">

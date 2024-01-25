@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-0">
-                    <a href="shop"> Home </a>
+                    <a href="home"> Home </a>
                     <span class="mx-2 mb-0">/</span>
 
                     <a href="cart">Cart</a>
@@ -100,7 +100,7 @@
                     </tbody>
                   </table>
 
-                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit"">Place Order</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit">Place Order</button>
                   </div>
 
                 </div>

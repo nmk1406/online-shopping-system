@@ -41,10 +41,11 @@
       <nav class="site-navigation text-right text-md-center" role="navigation">
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="index.jsp">Home</a></li>
             <li class="active"><a href="shop">Shop</a></li>
-            <li class="active"><a href="order">Order History</a></li>
+            <li class="active"><a href="order">Order Management</a></li>
             <li class="active"><a href="product-management">Product Management</a></li>
+            <li class="active"><a href="user-management">User Management</a></li>
           </ul>
         </div>
       </nav>

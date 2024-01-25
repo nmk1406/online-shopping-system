@@ -17,7 +17,7 @@ import dto.Item;
 import dto.Product;
 
 @WebServlet("/cart")
-public class CartControl extends HttpServlet {
+public class ViewCartControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

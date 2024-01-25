@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 mb-0">
-						<a href="shop">Home</a>
+						<a href="home">Home</a>
 						<span class="mx-2 mb-0">/</span>
 						<strong class="text-black">Categories Management</strong>
 					</div>
@@ -75,11 +75,11 @@
 			                                        	value="${product.description}" style="text-align: center" placeholder="Type here">
 			                                    </td>
 			                                    <td>
-			                                    	<input type="text" name="status" class="form-control-plaintext h5 text-black"
+			                                    	<input type="number" name="status" min="0" max="1" class="form-control-plaintext h5 text-black"
 			                                        	value="${product.status}" style="text-align: center" placeholder="Type here">
 			                                    </td>
 			                                    <td>
-			                                    	<input type="text" name="categoryId" class="form-control-plaintext h5 text-black"
+			                                    	<input type="number" name="categoryId" min="1" class="form-control-plaintext h5 text-black"
 			                                        	value="${product.category.id}" style="text-align: center" placeholder="Type here">
 			                                    </td>
 			                                    <td>

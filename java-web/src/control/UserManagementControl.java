@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.OrderDao;
-import dto.Order;
+import dao.UserDao;
+import dto.User;
 
-@WebServlet("/order-management")
-public class OrderManagementControl extends HttpServlet {
+@WebServlet("/user-management")
+public class UserManagementControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		OrderDao orderDao = new OrderDao();
-		List<Order> list = orderDao.getAllOrders();
+		UserDao userDao = new UserDao();
+		List<User> list = userDao.getAllUsers();
 		
 		// phan trang
 		String pageRaw = request.getParameter("page");
@@ -43,14 +43,14 @@ public class OrderManagementControl extends HttpServlet {
 		
 		int start = (page - 1) * numPerPage;
 		int end = Math.min(page * numPerPage, size);
-		List<Order> orders = orderDao.getOrderByPage(list, start, end);
+		List<User> users = userDao.getUsersByPage(list, start, end);
 		
-		request.setAttribute("orders", orders);
+		request.setAttribute("users", users);
 		request.setAttribute("num", num);
 		request.setAttribute("page", page);
-
+		
 		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("order.jsp");
+		rd = request.getRequestDispatcher("user-management.jsp");
 		rd.forward(request, response);
 	}
 

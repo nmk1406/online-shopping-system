@@ -28,45 +28,51 @@
 	                            <thead>
 		                            <tr>
 		                                <th>Id</th>
-		                                <th>Name</th>
-		                                <th>Image</th>
-		                                <th>Quantity</th>
-		                                <th>Price</th>
-		                                <th>Description</th>
+		                                <th>Email</th>
+		                                <th>Password</th>
+		                                <th>Phone</th>
 		                                <th>Status</th>
-		                                <th>Category</th>
+		                                <th>Role</th>
 		                                <th>Action</th>
 		                            </tr>
 	                            </thead>
 	                            <tbody>
-		                            <c:forEach items="${products}" var="product">
+		                            <c:forEach items="${users}" var="user">
 		                                <tr>
 		                                    <td>
-		                                        <h2 class="h5 text-black">${product.id}</h2>
+		                                        <h2 class="h5 text-black">${user.id}</h2>
 		                                    </td>
 		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.name}</h2>
+		                                    	<h2 class="h5 text-black">${user.email}</h2>
 		                                    </td>
 		                                    <td>
-		                                    	<img src="${product.image}" alt="Image" class="img-fluid">
+		                                    	<h2 class="h5 text-black">${user.password}</h2>
 		                                    </td>
 		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.quantity}</h2>
+		                                    	<h2 class="h5 text-black">${user.phone}</h2>
 		                                    </td>
+		                                    <c:if test="${user.status == 1}">
+			                                    <td>
+			                                    	<h2 class="h5 text-black">Open</h2>
+			                                    </td>
+		                                    </c:if>
+		                                    <c:if test="${user.status == 0}">
+			                                    <td>
+			                                    	<h2 class="h5 text-black">Terminated</h2>
+			                                    </td>
+		                                    </c:if>
+		                                    <c:if test="${user.roleId == 1}">
+			                                    <td>
+			                                    	<h2 class="h5 text-black">Admin</h2>
+			                                    </td>
+		                                    </c:if>
+		                                    <c:if test="${user.roleId == 2}">
+			                                    <td>
+			                                    	<h2 class="h5 text-black">User</h2>
+			                                    </td>
+		                                    </c:if>
 		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.price}</h2>
-		                                    </td>
-		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.description}</h2>
-		                                    </td>
-		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.status}</h2>
-		                                    </td>
-		                                    <td>
-		                                    	<h2 class="h5 text-black">${product.category.name}</h2>
-		                                    </td>
-		                                    <td>
-		                                        <a href="update-product?id=${product.id}" class="btn btn-primary btn-sm">Edit</a>
+		                                        <a href="update-user?id=${user.id}" class="btn btn-primary btn-sm">Edit</a>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>
@@ -78,21 +84,12 @@
 								<div class="site-block-27">
 									<ul>
 										<c:forEach begin="${1}" end="${num}" var="i">
-											<li><a class="${i==page?'active':''}" href="product-management?page=${i}">${i}</a></li>
+											<li><a class="${i==page?'active':''}" href="user-management?page=${i}">${i}</a></li>
 										</c:forEach>
 									</ul>
 								</div>
 							</div>
 						</div>
-	                </div>
-	            </div>
-	            <div class="row">
-	                <div class="col-md-6">
-	                    <div class="row mb-5">
-	                        <div class="col-md-6 mb-3 mb-md-0">
-	                            <a href="insert-product" class="btn btn-outline-primary btn-sm">Add product</a>
-	                        </div>
-	                    </div>
 	                </div>
 	            </div>
 	    	</div>

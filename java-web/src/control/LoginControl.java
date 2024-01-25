@@ -31,9 +31,14 @@ public class LoginControl extends HttpServlet {
 		
 		UserDao userDao = new UserDao();
 		User user = userDao.validate(email, password);
+		
+		RequestDispatcher rd;
 		if (user == null) {
-			request.setAttribute("error", "password error");
-			RequestDispatcher rd;
+			request.setAttribute("error", "Password error");
+			rd = request.getRequestDispatcher("login.jsp");
+			rd.include(request, response);
+		} else if (user.getStatus() == 0) {
+			request.setAttribute("error", "Your account has been terminated");
 			rd = request.getRequestDispatcher("login.jsp");
 			rd.include(request, response);
 		} else {
