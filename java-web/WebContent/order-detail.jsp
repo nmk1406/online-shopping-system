@@ -8,6 +8,7 @@
 <body>
 	<div class="site-wrap">
 		<jsp:include page="template/header.jsp"/>
+		
 		<div class="bg-light py-3">
 			<div class="container">
 				<div class="row">
@@ -32,7 +33,7 @@
 		                            <tr>
 		                                <th>Id</th>
 		                                <th>Product</th>
-		                                <th style="width: 300px">Image</th>
+		                                <th style="width: 200px">Image</th>
 		                                <th>Price</th>
 		                                <th>Quantity</th>
 		                                <th>Total</th>

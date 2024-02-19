@@ -28,7 +28,6 @@
 	            </div>
 	        </div>
 	    </div>
-	    
 		<jsp:include page="template/footer.jsp"/>
 	</div>
 	<jsp:include page="template/script.jsp"/>

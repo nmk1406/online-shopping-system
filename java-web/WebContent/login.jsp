@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +9,11 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="#">
+			<form action="register" method="post">
 				<h1>Create Account</h1>
-				<input type="text" placeholder="Name" />
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
+				<input type="email" name="email" placeholder="Email" />
+				<input type="text" name="phone" placeholder="Phone" />
+				<input type="password" name="password" placeholder="Password" />
 				<button>Sign Up</button>
 			</form>
 		</div>
@@ -20,9 +21,8 @@
 			<form action="login" method="post">
 				<h1>Log in</h1>
 				${error}
-				<input type="text" name="email" placeholder="Email" />
+				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="password" placeholder="Password" />
-				<a href="#">Forgot your password?</a>
 				<button type="submit">Log in</button>
 			</form>
 		</div>

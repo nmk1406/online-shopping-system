@@ -72,7 +72,7 @@
 			                                    </td>
 		                                    </c:if>
 		                                    <td>
-		                                        <a href="update-user?id=${user.id}" class="btn btn-primary btn-sm">Edit</a>
+		                                        <a href="update-user?id=${user.id}" class="btn btn-primary btn-sm">Update</a>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>

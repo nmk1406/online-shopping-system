@@ -24,13 +24,13 @@
 	            <div class="row mb-5">
 	                <div class="col-md-12">
 	                    <div class="site-blocks-table">
-	                    	<c:if test="${not empty cart}">
+	                    	<c:if test="${not empty cart.items}">
 	                        <table class="table table-bordered">
 	                            <thead>
 		                            <tr>
 		                            	<th>Id</th>
 		                            	<th>Product</th>
-		                                <th style="width: 300px">Image</th>
+		                                <th style="width: 200px">Image</th>
 		                                <th>Price</th>
 		                                <th>Quantity</th>
 		                                <th>Total</th>
@@ -83,7 +83,7 @@
 	                            </tbody>
 	                        </table>
 	                        </c:if>
-	                        <c:if test="${empty cart}">
+	                        <c:if test="${empty cart.items}">
 	                        	<label class="text-black h4">Your cart is empty.</label>
 	                        </c:if>
 	                    </div>

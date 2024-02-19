@@ -66,7 +66,7 @@
 		                                    	<h2 class="h5 text-black">${product.category.name}</h2>
 		                                    </td>
 		                                    <td>
-		                                        <a href="update-product?id=${product.id}" class="btn btn-primary btn-sm">Edit</a>
+		                                        <a href="update-product?id=${product.id}" class="btn btn-primary btn-sm">Update</a>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>

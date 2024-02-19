@@ -24,6 +24,7 @@
 	            <div class="row mb-5">
 	                <div class="col-md-12">
 	                    <div class="site-blocks-table">
+	                    	<c:if test="${not empty orders}">
 	                        <table class="table table-bordered">
 	                            <thead>
 		                            <tr>
@@ -62,13 +63,30 @@
 		                                    </td>
 		                                    <td>
 		                                    	<a href="order-detail?id=${order.id}" class="btn btn-primary btn-sm">Detail</a>
-		                                    	<a href="update-order?id=${order.id}" class="btn btn-primary btn-sm">Update</a>
+		                                    	<c:if test="${user.roleId == 1}">
+		                                    		<a href="update-order?id=${order.id}" class="btn btn-primary btn-sm">Update</a>
+		                                    	</c:if>
 		                                    </td>
 		                                </tr>
 		                            </c:forEach>
 	                            </tbody>
 	                        </table>
+	                        </c:if>
+	                        <c:if test="${empty orders}">
+	                        	<label class="text-black h4">Your order is empty.</label>
+	                        </c:if>
 	                    </div>
+	                    <div class="row" data-aos="fade-up">
+							<div class="col-md-12 text-center">
+								<div class="site-block-27">
+									<ul>
+										<c:forEach begin="${1}" end="${num}" var="i">
+											<li><a class="${i==page?'active':''}" href="order-management?page=${i}">${i}</a></li>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+						</div>
 	                </div>
 	            </div>
 	    	</div>
