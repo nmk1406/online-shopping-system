@@ -183,35 +183,35 @@ public class OrderDao {
 		}
 	}
 	
-	
+	/*	
 	public static void main(String[] args) {
 		OrderDao orderDao = new OrderDao();
 		
-//		// test ham lay order theo id
-//		Order order = orderDao.getOrderById(4);
-//		System.out.println(order);
-//		
-//		// test ham lay order theo userId
-//		List<Order> orders = orderDao.getOrderByUserId(3);
-//		System.out.println(orders);
-//		
-//		// test ham them du lieu bang order
-//		UserDao userDao = new UserDao();
-//		User user = userDao.validate("c@gmail.com", "c");
-//		
-//		ProductDao productDao = new ProductDao();
-//		List<Product> products = productDao.getAllProducts();
-//		
-//		String txt = "5:2/6:3/"; // 2 product voi id=5, 3 product voi id=6
-//		Cart cart = new Cart(txt, products);
-//		
-//		Order order = new Order();
-//		order.setFullname("k");
-//		order.setAddress("hcm");
-//		order.setEmail("k@gmail.com");
-//		order.setPhone("012345678");
-//		
-//		orderDao.insertOrder(user, cart, order);
+		// test ham lay order theo id
+		Order order = orderDao.getOrderById(4);
+		System.out.println(order);
+		
+		// test ham lay order theo userId
+		List<Order> orders = orderDao.getOrderByUserId(3);
+		System.out.println(orders);
+		
+		// test ham them du lieu bang order
+		UserDao userDao = new UserDao();
+		User user = userDao.validate("c@gmail.com", "c");
+		
+		ProductDao productDao = new ProductDao();
+		List<Product> products = productDao.getAllProducts();
+		
+		String txt = "5:2/6:3/"; // 2 product voi id=5, 3 product voi id=6
+		Cart cart = new Cart(txt, products);
+		
+		Order order = new Order();
+		order.setFullname("k");
+		order.setAddress("hcm");
+		order.setEmail("k@gmail.com");
+		order.setPhone("012345678");
+		
+		orderDao.insertOrder(user, cart, order);
 		
 		// test ham update status
 		Order order = orderDao.getOrderById(1);
@@ -219,5 +219,5 @@ public class OrderDao {
 		
 		orderDao.updateStatus(order);
 	}
-	
+	*/
 }

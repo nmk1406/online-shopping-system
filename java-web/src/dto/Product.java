@@ -13,7 +13,7 @@ public class Product {
 	public Product() {
 
 	}
-	
+
 	public Product(String name, int quantity, Double price, String description, String image, int status,
 			Category category) {
 		super();

@@ -115,27 +115,42 @@ public class UserDao {
 		}
 	}
 	
+	// ham insert user
+	public void insertUser(User user) {
+		String sql = "insert into users (email, password, phone) values (?, ?, ?)";
+		
+		try (Connection connection = new DBUtils().getConnection();
+				PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, user.getEmail());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getPhone());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 	
+	/*
 	public static void main(String[] args) {
 		UserDao userDao = new UserDao();
 		
-//		// test ham authentication user
-//		User user = userDao.validate("c@gmail.com", "c");
-//		System.out.println(user);
-//		
-//		// test ham lay tat ca user
-//		List<User> users = userDao.getAllUsers();
-//		System.out.println(users);
-//		
-//		// test ham lay user theo id
-//		User user = userDao.getUserById(1);
-//		System.out.println(user);
-//		
+		// test ham authentication user
+		User user = userDao.validate("c@gmail.com", "c");
+		System.out.println(user);
+		
+		// test ham lay tat ca user
+		List<User> users = userDao.getAllUsers();
+		System.out.println(users);
+		
+		// test ham lay user theo id
+		User user = userDao.getUserById(1);
+		System.out.println(user);
+		
 		// test ham update user
 		User user = userDao.getUserById(4);
 		user.setStatus(0);
 		user.setRoleId(1);
 		userDao.updateUser(user);
 	}
-	
+	*/
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ProductDao;
 import dto.Cart;
@@ -62,6 +63,13 @@ public class ViewCartControl extends HttpServlet {
 			cookie.setMaxAge(30 * 24 * 60 * 60);
 			response.addCookie(cookie);
 		}
+		
+		int size = 0;
+		if (items != null) {
+			size = items.size();
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("size", size);
 		
 		request.setAttribute("cart", cart);
 		

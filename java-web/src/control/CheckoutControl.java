@@ -87,7 +87,13 @@ public class CheckoutControl extends HttpServlet {
 			Cookie cookie = new Cookie("cart", "");
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
-			response.sendRedirect("shop");
+			
+			int size = 0;
+			session.setAttribute("size", size);
+			
+			RequestDispatcher rd;
+			rd = request.getRequestDispatcher("thankyou.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

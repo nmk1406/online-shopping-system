@@ -32,7 +32,7 @@ public class UserManagementControl extends HttpServlet {
 		}
 		
 		int num;
-		int numPerPage = 6;
+		int numPerPage = 5;
 		int size = list.size();
 		
 		if (size % numPerPage == 0) {
