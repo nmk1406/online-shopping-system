@@ -1,7 +1,7 @@
 # Online Shopping Website
 
 ## Description
-
+This is a project with basic features of an online shopping website. The front-end is taken from the website mentioned below. It provides a user-friendly interface for tasks like managing items, orders, users, checkout and more.
 
 ## Features
 ### User features
