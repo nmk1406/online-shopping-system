@@ -14,7 +14,7 @@
 					<div class="col-md-12 mb-0">
 						<a href="home">Home</a>
 						<span class="mx-2 mb-0">/</span>
-						<strong class="text-black">Order History</strong>
+						<strong class="text-black">Edit Order</strong>
 					</div>
 				</div>
 			</div>
