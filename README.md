@@ -4,7 +4,6 @@
 
 
 ## Features
-
 ### User features
 ```
 1. Login, logout, and registration.
@@ -30,6 +29,24 @@
 ![](./images/db-design.png)
 
 ## Screenshots (detail in images folder)
+- Login
+![](./images/login.png)
+- Register
+![](./images/registraion.png)
+- Shop
+![](./images/shop.png)
+- Shopping cart
+![](./images/cart.png)
+- Checkout
+![](./images/checkout.png)
+- Order history
+![](./images/order-history.png)
+- User management
+![](./images/user-management.png)
+- Product management
+![](./images/product-management.png)
+- Order management
+![](./images/order-management.png)
 
 ## Installing
 ```
@@ -39,8 +56,11 @@
 ```
 
 ## Built with
-* [Java]() - Java jdk 8u191
-* [MySQL]() - MySQL 8.0.13
-* [Maven]() - Maven 3.6.0
-* [Tomcat]() - Tomcat 8.5.34
-* [Shoppers - Free Bootstrap 4 HTML5 e-commerce website template]() - Website front-end
+* [Java](https://www.oracle.com/java/technologies/) - Java jdk 8u191
+* [MySQL](https://www.mysql.com/) - MySQL 8.0.13
+* [Maven](https://maven.apache.org/) - Maven 3.6.0
+* [Tomcat](https://tomcat.apache.org/) - Tomcat 8.5.34
+* [Shoppers - Free Bootstrap 4 HTML5 e-commerce website template](https://themewagon.com/themes/free-bootstrap-4-html5-ecommerece-website-template-shoppers/) - Website front-end
+
+## Author
+* **Nguyen Minh Khoa** [Github](https://github.com/nmk1406)
